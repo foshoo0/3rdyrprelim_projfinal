@@ -1,0 +1,48 @@
+// QUEUING MANAGEMENT SYSTEM
+
+Table customers {
+  customer_id integer
+  customer_name varchar
+  contact_number integer
+}
+
+Table queue {
+  queue_id integer [primary key]
+  customer_id varchar
+  service_id varchar
+  queue_position integer
+  status varchar
+  time_joined datetime
+}
+
+Table services {
+  service_id integer [primary key]
+  service_type varchar
+  description varchar
+}
+
+Table staff {
+  staff_id integer [primary key]
+  service_id integer
+  staff_name varchar
+  role varchar
+}
+
+Table services_session {
+  servicesession_id integer [primary key]
+  queue_id integer
+  staff_id integer
+  start_time datetime
+  end_time datetime
+}
+
+
+Ref: "customers"."customer_id" < "queue"."customer_id"
+
+Ref: "queue"."service_id" > "services"."service_id"
+
+Ref: "staff"."service_id" > "services"."service_id"
+
+Ref: "queue"."queue_id" < "services_session"."queue_id"
+
+Ref: "staff"."staff_id" < "services_session"."staff_id"
