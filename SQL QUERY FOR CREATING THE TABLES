@@ -1,0 +1,35 @@
+CREATE TABLE customers (
+    customer_id INT PRIMARY KEY,
+    customer_name VARCHAR(100) NOT NULL,
+    contact_number VARCHAR(15) 
+);
+
+CREATE TABLE queue (
+    queue_id INT PRIMARY KEY,
+    customer_id INT, 
+    service_id INT, 
+    queue_position INT,
+    status VARCHAR(50),
+    time_joined DATETIME
+);
+
+CREATE TABLE services (
+    service_id INT PRIMARY KEY,
+    service_type VARCHAR(100),
+    description VARCHAR(255)
+);
+
+CREATE TABLE staff (
+    staff_id INT PRIMARY KEY,
+    service_id INT,
+    staff_name VARCHAR(100),
+    role VARCHAR(50)
+);
+
+CREATE TABLE services_session (
+    servicesession_id INT PRIMARY KEY,
+    queue_id INT,
+    staff_id INT,
+    start_time DATETIME,
+    end_time DATETIME
+);
